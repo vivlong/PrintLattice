@@ -20,6 +20,10 @@ namespace PrintLattice
 												Console.BufferHeight = 300;
 												string msg = " ";
 												ConsoleColorWriteLine(msg, ConsoleColor.Green);
+												msg = "Copyright 2016 JamesLeo";
+												ConsoleColorWriteLine(msg, ConsoleColor.Green);
+												msg = " ";
+												ConsoleColorWriteLine(msg, ConsoleColor.Green);
 												bool blnContinue = true;
 												while (blnContinue)
 												{
@@ -41,24 +45,40 @@ namespace PrintLattice
 																}
 																else if (strSelect == "2")
 																{
-																				msg = " ";
-																				ConsoleColorWriteLine(msg, ConsoleColor.Green);
-																				msg = @"请输入图片文件路径： e.g. C:\demo.JPG";
-																				ConsoleColorWriteLine(msg, ConsoleColor.Green);
-																				string fileName = Console.ReadLine();
-																				Image i = Bitmap.FromFile(fileName);
-																				Bitmap bm = new Bitmap(i, 120, 120);
-																				Thresholding(ToGray(bm, 1));
-																				//Bitmap bmp = ToGray(new Bitmap(i),0);
-																				//Bitmap bm = new Bitmap(bmp, 50, 50);
-																				//bm.Save("c:/1.jpg", ImageFormat.Jpeg);
-																				//Graphics g = Graphics.FromImage(i);
-																				//g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-																				//g.DrawImage(bm, new Rectangle(0, 0, 80, 80), new Rectangle(0, 0, bm.Width, bm.Height), GraphicsUnit.Pixel);
-																				//g.Dispose();
-																				PrintBmpLatticeChar(bm);
-																				Console.ReadKey();
-																				blnContinue = false;
+																				bool blnContinue2 = true;
+																				while (blnContinue2)
+																				{
+																								msg = " ";
+																								ConsoleColorWriteLine(msg, ConsoleColor.Green);
+																								msg = @"请输入图片文件路径： e.g. C:\demo.JPG";
+																								ConsoleColorWriteLine(msg, ConsoleColor.Green);
+																								string fileName = Console.ReadLine();
+																								if (!string.IsNullOrEmpty(fileName))
+																								{
+																												Image i = Bitmap.FromFile(fileName);
+																												Bitmap bm = new Bitmap(i, 120, 120);
+																												Thresholding(ToGray(bm, 1));
+																												//Bitmap bmp = ToGray(new Bitmap(i),0);
+																												//Bitmap bm = new Bitmap(bmp, 50, 50);
+																												bm.Save("c:/1.jpg", ImageFormat.Jpeg);
+																												//Graphics g = Graphics.FromImage(i);
+																												//g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+																												//g.DrawImage(bm, new Rectangle(0, 0, 80, 80), new Rectangle(0, 0, bm.Width, bm.Height), GraphicsUnit.Pixel);
+																												//g.Dispose();
+																												PrintBmpLatticeChar(bm);
+																												Console.ReadKey();
+																												blnContinue2 = false;
+																												blnContinue = false;
+																								}
+																								else
+																								{
+																												msg = " ";
+																												ConsoleColorWriteLine(msg, ConsoleColor.Red);
+																												msg = "输入错误，请重新输入！";
+																												ConsoleColorWriteLine(msg, ConsoleColor.Red);
+																												blnContinue2 = true;
+																								}
+																				}																				
 																}
 																else
 																{
